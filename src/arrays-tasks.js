@@ -345,14 +345,16 @@ function calculateBalance(arr) {
  *    createChunks([10, 20, 30, 40, 50], 1) => [[10], [20], [30], [40], [50]]
  */
 function createChunks(arr, chunkSize) {
-  let start = 0;
-  let end = chunkSize;
-  const array = [];
-  while (start < arr.length) {
-    array.push(arr.slice(start, end));
+  let start = 0 - chunkSize;
+  let index = 0;
+  const length = Math.ceil(arr.length / chunkSize);
+  const array = Array.from({ length }, () => {
     start += chunkSize;
-    end += chunkSize;
-  }
+    index += chunkSize;
+    return arr.filter((element, i) => {
+      return i >= start && i < index;
+    });
+  });
   return array;
 }
 
