@@ -292,8 +292,17 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray(['a', ['b', ['c', 'd'], 'e'], 'f']) => ['a', 'b', 'c', 'd', 'e', 'f']
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
-function flattenArray(/* nestedArray */) {
-  throw new Error('Not implemented');
+function flattenArray(nestedArray) {
+  function checkNested(array) {
+    const result = array.map((element) => {
+      if (Array.isArray(element)) {
+        return checkNested(element);
+      }
+      return element;
+    });
+    return result;
+  }
+  checkNested(nestedArray);
 }
 
 /**
@@ -449,8 +458,13 @@ function getIdentityMatrix(n) {
  *    getIndicesOfOddNumbers([2, 4, 6, 8, 10]) => []
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
-function getIndicesOfOddNumbers(/* numbers */) {
-  throw new Error('Not implemented');
+function getIndicesOfOddNumbers(numbers) {
+  let array = [];
+  numbers.map((element, i) => {
+    if (element % 2 !== 0) array = [...array, i];
+    return element;
+  });
+  return array;
 }
 
 /**
