@@ -293,16 +293,16 @@ function createNDimensionalArray(/* n, size */) {
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
 function flattenArray(nestedArray) {
-  function checkNested(array) {
-    const result = array.map((element) => {
-      if (Array.isArray(element)) {
-        return checkNested(element);
-      }
+  let array = [];
+  function splitArray(arr) {
+    arr.map((element) => {
+      if (!Array.isArray(element)) array = [...array, element];
+      if (Array.isArray(element)) splitArray(element);
       return element;
     });
-    return result;
   }
-  checkNested(nestedArray);
+  splitArray(nestedArray);
+  return array;
 }
 
 /**
@@ -578,8 +578,23 @@ function shiftArray(/* arr, n */) {
  *   sortDigitNamesByNumericOrder([ 'nine','eight','nine','eight' ]) => [ 'eight','eight','nine','nine']
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  function compare(a, b) {
+    const digitNames = [
+      'zero',
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+      'seven',
+      'eight',
+      'nine',
+    ];
+    return digitNames.indexOf(a) - digitNames.indexOf(b);
+  }
+  return arr.sort(compare);
 }
 
 /**
