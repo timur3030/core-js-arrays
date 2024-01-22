@@ -279,6 +279,16 @@ function distinct(arr) {
  *    createNDimensionalArray(1, 1) => [0]
  */
 function createNDimensionalArray(/* n, size */) {
+  // const deepestArray = Array.from({ length: size }, () => 0);
+  // let nestedArray = [];
+  // let result = [];
+  // for (let i = 0; i < size; i += 1) {
+  //   nestedArray = [...nestedArray, deepestArray];
+  // }
+  // for (let i = 1; i < n; i += 1) {
+  //   result = [...result, nestedArray];
+  // }
+  // return result;
   throw new Error('Not implemented');
 }
 
@@ -561,18 +571,13 @@ function findLongestIncreasingSubsequence(nums) {
  *  propagateItemsByPositionIndex([ 'a', 'b', 'c', null ]) => [ 'a', 'b', 'b', 'c', 'c', 'c',  null, null, null, null ]
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  // let array = [];
-  // arr.map((element, i) => {
-  //   for (let j = 0; j <= i; j += 1) {
-  //     array = [...array, element];
-  //   }
-  //   return element;
-  // });
-  // return array;
-  // let len = ((1 + arr.length) / 2) * arr.length;
-  // const array = Array.from({ length: len }, (_, i) => i);
-  // return array;
+function propagateItemsByPositionIndex(arr) {
+  let array = [];
+  arr.map((element, i) => {
+    array = [...array, ...Array.from({ length: i + 1 }, () => element)];
+    return element;
+  });
+  return array;
 }
 
 /**
