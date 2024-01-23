@@ -295,16 +295,7 @@ function createNDimensionalArray(n, size) {
  *    flattenArray([1, 2, 3, 4]) => [1, 2, 3, 4]
  */
 function flattenArray(nestedArray) {
-  let array = [];
-  function splitArray(arr) {
-    arr.map((element) => {
-      if (!Array.isArray(element)) array = [...array, element];
-      if (Array.isArray(element)) splitArray(element);
-      return element;
-    });
-  }
-  splitArray(nestedArray);
-  return array;
+  return nestedArray.flat(Infinity);
 }
 
 /**
