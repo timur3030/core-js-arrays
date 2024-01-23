@@ -279,6 +279,12 @@ function distinct(arr) {
  *    createNDimensionalArray(1, 1) => [0]
  */
 function createNDimensionalArray(/* n, size */) {
+  // const deepest = Array.from({ length: size }, () => 0);
+  // const nested = deepest.map((item, i, arr) => arr);
+  // return nested;
+  // function nest(ar) {
+  //   return ar.map((item, i, arr) => arr);
+  // }
   // const deepestArray = Array.from({ length: size }, () => 0);
   // let nestedArray = [];
   // let result = [];
@@ -289,9 +295,8 @@ function createNDimensionalArray(/* n, size */) {
   //   result = [...result, nestedArray];
   // }
   // return result;
-  throw new Error('Not implemented');
 }
-
+// console.log(createNDimensionalArray(0, 2))
 /**
  * Flattens a nested array into a single-level array.
  *
@@ -488,8 +493,10 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([ 0, 255, 16777215]) => [ '#000000', '#0000FF', '#FFFFFF' ]
  *    getHexRGBValues([]) => []
  */
-function getHexRGBValues(/* arr */) {
-  throw new Error('Not implemented');
+function getHexRGBValues(arr) {
+  return arr.map((element) => {
+    return `#${element.toString(16).padStart(6, '0').toUpperCase()}`;
+  });
 }
 
 /**
