@@ -278,25 +278,11 @@ function distinct(arr) {
  *    createNDimensionalArray(4, 2) => [[[[0, 0], [0, 0]], [[0, 0], [0, 0]]], [[[0, 0], [0, 0]], [[0, 0], [0, 0]]]]
  *    createNDimensionalArray(1, 1) => [0]
  */
-function createNDimensionalArray(/* n, size */) {
-  // const deepest = Array.from({ length: size }, () => 0);
-  // const nested = deepest.map((item, i, arr) => arr);
-  // return nested;
-  // function nest(ar) {
-  //   return ar.map((item, i, arr) => arr);
-  // }
-  // const deepestArray = Array.from({ length: size }, () => 0);
-  // let nestedArray = [];
-  // let result = [];
-  // for (let i = 0; i < size; i += 1) {
-  //   nestedArray = [...nestedArray, deepestArray];
-  // }
-  // for (let i = 1; i < n; i += 1) {
-  //   result = [...result, nestedArray];
-  // }
-  // return result;
+function createNDimensionalArray(n, size) {
+  if (n === 1) return Array(size).fill(0);
+  return Array(size).fill(createNDimensionalArray(n - 1, size));
 }
-// console.log(createNDimensionalArray(0, 2))
+
 /**
  * Flattens a nested array into a single-level array.
  *
